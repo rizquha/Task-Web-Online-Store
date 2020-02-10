@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"]="Add Item To Your Store";
+}
+<div class="text-center">
+    <br><br>
+    <h1 class="display-4">Add Item To Your Store</h1>
+    <p>Always Update Your Outfit</p>
+    <ul>
+        @{
+        <div class="kotak_login">
+		<h3>Add Item</h3> 
+		<form>
+			<label>Title</label>
+			<input type="text" name="title" value="" class="form_login" placeholder="Title .." id="title1">
+ 
+			<label>Rate</label>
+			<input type="text" name="rate" value="" class="form_login" placeholder="Rate .." id="rate1">
+
+			<label>Price</label>
+			<input type="text" name="price" value="" class="form_login" placeholder="Price .." id="price1">
+
+			<label>Description</label>
+			<input type="text" name="description" value="" class="form_login" placeholder="Description .." id="description1">
+
+			<label>Image</label>
+			<input type="text" name="image" value="" class="form_login" placeholder="Image .." id="image1">
+ 
+			<button type="submit" class="tombol_login" value="add" onclick="javascript:AddButtonItem(this)">Add</button>
+            <button type="submit" class="tombol_login" value="cancel" onclick="javascript:CancelButtonItem(this)">Cancel</button>
+			<br>
+		</form>
+	    </div>
+        }
+    </ul>
+</div>
+<script type="text/javascript">
+function AddButtonItem(btn)
+{
+    var title = document.getElementById("title").value;
+    var rate = document.getElementById("rate").value;
+    var price = document.getElementById("price").value;
+    var description = document.getElementById("description").value;
+    var image = document.getElementById("image").value;
+    location.href='/Home/AddItem?title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
+}
+function CancelButtonItem(button)
+{
+    location.href='/Home/IndexAdmin';
+
+}
+</script>

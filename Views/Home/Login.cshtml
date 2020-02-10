@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"]="Welcome To Our Store";
+}
+<div class="text-center">
+    <br><br>
+    <h1 class="display-4">Welcome To Our Store</h1>
+    <p>Start Your Day With Best Outfit</p>
+
+    <ul>
+        @{
+        <div class="kotak_login">
+		<h3>Silahkan login</h3> 
+		<form>
+			<label>Username</label>
+			<input type="text" name="username" value="" class="form_login" placeholder="Username atau email .." id="username1">
+ 
+			<label>Password</label>
+			<input type="text" name="password" value="" class="form_login" placeholder="Password .." id="password1">
+ 
+			<button type="submit" class="tombol_login" value="LOGIN" onclick="javascript:LoginButton(this)">Login</button>
+			<br>
+		</form>
+		<h6>@ViewBag.error</h6>
+
+	    </div>
+        }
+    </ul>
+</div>
+
+<script type="text/javascript">
+function LoginButton(btn)
+{
+    var uname = document.getElementById("username1").value;
+	var pass = document.getElementById("password1").value;
+	location.href='/Home/Login?username='+uname+'&password='+pass;
+}
+</script>
