@@ -53,16 +53,12 @@ namespace Task_Web_Product.Controllers
             }
             return View(); 
         }
-        public IActionResult AddItems()
-        {
-            return View();
-        }
-        public IActionResult AddItem(string title, int rate, int price, string description, string image)
+        public IActionResult AddItems(string title, string rate, string price, string description, string image)
         {
             Items item = new Items{
                 title = title,
-                rate=rate,
-                price=price,
+                rate=Convert.ToInt32(rate),
+                price=Convert.ToInt32(price),
                 desc=description,
                 image=image,
                 total_item_in_cart=0,
@@ -70,14 +66,14 @@ namespace Task_Web_Product.Controllers
             };
             _AppDbContext.Add(item);
             _AppDbContext.SaveChanges();
-            return RedirectToAction("IndexAdmin","Home");
+            return View("AddItems");
         }
         public IActionResult IndexAdmin()
         {
             var items = from item in _AppDbContext.items select item;
             ViewBag.items = items;
             return View("IndexAdmin");
-        }
+        } 
 
         public IActionResult Index()
         {
@@ -145,6 +141,17 @@ namespace Task_Web_Product.Controllers
             _AppDbContext.SaveChanges();
             return RedirectToAction("Cart","Home");
         }
+        public IActionResult Edit(int id,string title, int rate,int price, string description, string image)
+        {
+            var data = _AppDbContext.items.Find(id);
+            data.title = title;
+            data.rate = rate;
+            data.price = price;
+            data.desc=description;
+            data.image = image;
+            _AppDbContext.SaveChanges();
+            return RedirectToAction("IndexHome","Home");
+        }
         public IActionResult Checkout(int sum)
         {
             var cart = _AppDbContext.carts.Find(1);
@@ -153,7 +160,13 @@ namespace Task_Web_Product.Controllers
             _AppDbContext.Attach(cart);
             _AppDbContext.SaveChanges();
             return View("Checkout");
-
+        }
+        public IActionResult Delete(int id)
+        {
+            var Delete = _AppDbContext.items.Find(id);
+            _AppDbContext.items.Remove(Delete);
+            _AppDbContext.SaveChanges();
+            return RedirectToAction("IndexAdmin","Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

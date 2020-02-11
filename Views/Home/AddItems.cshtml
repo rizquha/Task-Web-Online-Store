@@ -26,7 +26,7 @@
 			<input type="text" name="image" value="" class="form_login" placeholder="Image .." id="image1">
  
 			<button type="submit" class="tombol_login" value="add" onclick="javascript:AddButtonItem(this)">Add</button>
-            <button type="submit" class="tombol_login" value="cancel" onclick="javascript:CancelButtonItem(this)">Cancel</button>
+            <button class="tombol_login" value="cancel" asp-asp-controller="Home" asp-action="IndexAdmin">Cancel</button>
 			<br>
 		</form>
 	    </div>
@@ -36,16 +36,11 @@
 <script type="text/javascript">
 function AddButtonItem(btn)
 {
-    var title = document.getElementById("title").value;
-    var rate = document.getElementById("rate").value;
-    var price = document.getElementById("price").value;
-    var description = document.getElementById("description").value;
-    var image = document.getElementById("image").value;
-    location.href='/Home/AddItem?title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
-}
-function CancelButtonItem(button)
-{
-    location.href='/Home/IndexAdmin';
-
+    var title = document.getElementById("title1").value;
+    var rate = document.getElementById("rate1").value;
+    var price = document.getElementById("price1").value;
+    var description = document.getElementById("description1").value;
+    var image = document.getElementById("image1").value;
+    location.href='/Home/AddItems?title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
 }
 </script>

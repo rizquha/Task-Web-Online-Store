@@ -1,6 +1,44 @@
 @{
     ViewData["Title"]="Welcome To Our Store";
 }
+
+    <div id="id01" class="modal">
+    <form class="modal-content animate" asp-action="Edit" asp-controller="Home" method="POST" id="editform" name="edit" role="form">
+    <br><br><br>
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <div class="container">
+        <ul>
+        @{
+        var itemx = ViewBag.items;
+        foreach(var item in itemx)
+        {
+        <div class="text-center">
+            <input type="text" name="id" id="id1" value="@item.id" hidden>
+
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="title" id="title1" value="@item.title">
+            <br><br>
+            <label for="rate"><b>Rate</b></label><br>
+            <input type="text"  name="rate" id="rate1" value="@item.rate">
+            <br><br>
+            <label for="price"><b>Price</b></label><br>
+            <input type="text"  name="price" id="price1" value="@item.price">
+            <br><br>
+            <label for="description"><b>Description</b></label><br>
+            <input type="text"  name="description" id="description1" value="@item.desc">
+            <br><br>
+            <label for="image"><b>Image</b></label><br>
+            <input type="text" name="image" id="image1" value="@item.image">
+            <br><br>
+            <button type="submit" >Update</button>
+        </div> 
+        }
+        } 
+        </ul>
+        </div>
+    </form>
+    </div>
+
 <div class="text-center">
     <h1 class="display-4">Welcome To Our Store</h1>
     <p>Start Your Day With Best Outfit</p>
@@ -25,8 +63,8 @@
                         <h6>Rp. @item.price</h6>
                         <a href="/Home/Detail/@item.id">Details</a><br>
                         <button type="button" class="btn btn-info" onclick="location.href='/Home/Add/@item.id'">Add to Cart</button>
-                        <button type="button" class="btn btn-info" id="edit">Edit</button>
-                        <button type="button" class="btn btn-info" id="delete">Delete</button>
+                        <button type="button" class="btn btn-info" id="edit-@item.id" onclick="javascript:Edit(this)">Edit</button>
+                        <button type="button" class="btn btn-info" id="delete-@item.id" onclick="javascript:Delete(this)">Delete</button>
                     </div>
                     <br>
                     <br>
@@ -35,4 +73,23 @@
         }
     </ul>
 </div>
+<script type="text/javascript">
+function Delete(btn)
+{
+    var id = btn.id;
+    id = id.substring(7,id.length);
+    location.href='/Home/Delete?id='+id;
+}
+function Edit(button)
+{
+    var modal = document.getElementById('id01').style.display='block';
+    window.onclick = function(event) 
+    {
+    if (event.target == modal)
+    {
+        modal.style.display = "none";
+    }
+    }
+}
+</script>
 
