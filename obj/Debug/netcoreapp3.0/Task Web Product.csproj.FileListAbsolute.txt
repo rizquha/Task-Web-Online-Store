@@ -87,3 +87,12 @@ D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Newtonsoft.Js
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexAdmin.cshtml.g.cs
 D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\AddItems.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Mvc.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Razor.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Helpers.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.Deployment.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.Razor.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.Mvc.dll

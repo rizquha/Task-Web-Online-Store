@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PagedList;
 using Task_Web_Product.Models;
 
 namespace Task_Web_Product.Controllers
@@ -20,17 +21,17 @@ namespace Task_Web_Product.Controllers
             _AppDbContext = appDbContext;
         }
 
-        public IActionResult Login (string username,string password)
+        public IActionResult Login(string username, string password)
         {
-            var items = from item in _AppDbContext.users select new{uname1=item.Username,pass1=item.Password,status=item.status};
-            foreach(var item in items)
+            var items = from item in _AppDbContext.users select new { uname1 = item.Username, pass1 = item.Password, status = item.status };
+            foreach (var item in items)
             {
-                if(username==item.uname1)
+                if (username == item.uname1)
                 {
-                    if(password==item.pass1)
+                    if (password == item.pass1)
                     {
                         // ViewBag.status=item.status;
-                        return RedirectToAction("IndexAdmin","Home");
+                        return RedirectToAction("IndexAdmin", "Home");
                         // if(item.status=="user")
                         // {
                         //     return RedirectToAction("Index","Home");
@@ -42,27 +43,28 @@ namespace Task_Web_Product.Controllers
                     }
                     else
                     {
-                        ViewBag.error="Invalid Password";
+                        ViewBag.error = "Invalid Password";
                     }
                 }
                 else
                 {
-                    ViewBag.error="invalid Username";   
+                    ViewBag.error = "invalid Username";
                 }
 
             }
-            return View(); 
+            return View();
         }
         public IActionResult AddItems(string title, string rate, string price, string description, string image)
         {
-            Items item = new Items{
+            Items item = new Items
+            {
                 title = title,
-                rate=Convert.ToInt32(rate),
-                price=Convert.ToInt32(price),
-                desc=description,
-                image=image,
-                total_item_in_cart=0,
-                CartsId=1
+                rate = Convert.ToInt32(rate),
+                price = Convert.ToInt32(price),
+                desc = description,
+                image = image,
+                total_item_in_cart = 0,
+                CartsId = 1
             };
             _AppDbContext.Add(item);
             _AppDbContext.SaveChanges();
@@ -73,20 +75,45 @@ namespace Task_Web_Product.Controllers
             var items = from item in _AppDbContext.items select item;
             ViewBag.items = items;
             return View("IndexAdmin");
-        } 
+        }
 
         public IActionResult Index()
         {
-            var items = from item in _AppDbContext.items where item.rate>=8 select item;
+            var items = from item in _AppDbContext.items where item.rate >= 8 select item;
             ViewBag.items = items;
             return View();
         }
 
-        public IActionResult Item()
+        public IActionResult Item(int Sort, int? page, int PerPage)
         {
-            var items = from item in _AppDbContext.items select item;
+            ViewBag.PerPage = PerPage;
+            var items = from x in _AppDbContext.items select x;
             ViewBag.items = items;
-            return View();
+           if (PerPage != 0)
+            {
+                var item = from l in _AppDbContext.items select l;
+                var pager = new Pager(item.Count(), page, PerPage);
+                var viewModel = new IndexViewModel
+                {
+                    Item = item.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                    Pager = pager
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                var item = from l in _AppDbContext.items select l;
+                var pager = new Pager(item.Count(), page);
+                var viewModel = new IndexViewModel
+                {
+                    Item = item.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                    Pager = pager
+                };
+                return View(viewModel);
+            }
+            // var items = from x in _AppDbContext.items select x;
+            // ViewBag.items = items;
+            // return View();
         }
         public IActionResult Detail(int id)
         {
@@ -96,7 +123,7 @@ namespace Task_Web_Product.Controllers
         }
         public IActionResult Cart(int id)
         {
-            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId==1 && y.total_item_in_cart>0 select y;
+            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId == 1 && y.total_item_in_cart > 0 select y;
             ViewBag.items = display;
             return View("Cart");
         }
@@ -110,52 +137,52 @@ namespace Task_Web_Product.Controllers
                 _AppDbContext.carts.Add(cart);
                 _AppDbContext.SaveChanges();
             }
-            
-            findItem.total_item_in_cart+=1;
+
+            findItem.total_item_in_cart += 1;
             findItem.CartsId = findCarts.id;
             _AppDbContext.Add(findItem);
             _AppDbContext.Attach(findItem);
             _AppDbContext.SaveChanges();
 
-            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId==1 && y.total_item_in_cart>0 select y;
+            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId == 1 && y.total_item_in_cart > 0 select y;
             ViewBag.items = display;
-            return RedirectToAction("Cart","Home");
+            return RedirectToAction("Cart", "Home");
         }
-        public IActionResult Update(int id,int val)
+        public IActionResult Update(int id, int val)
         {
             var item = _AppDbContext.items.Find(id);
-            item.total_item_in_cart=val;
+            item.total_item_in_cart = val;
             _AppDbContext.Add(item);
             _AppDbContext.Attach(item);
             _AppDbContext.SaveChanges();
-            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId==1 && y.total_item_in_cart>0 select y;
+            var display = from x in _AppDbContext.carts from y in x.Items where y.CartsId == 1 && y.total_item_in_cart > 0 select y;
             ViewBag.items = display;
-            return RedirectToAction("Cart","Home");
+            return RedirectToAction("Cart", "Home");
         }
         public IActionResult Remove(int id)
         {
             var item = _AppDbContext.items.Find(id);
-            item.total_item_in_cart=0;
+            item.total_item_in_cart = 0;
             _AppDbContext.Add(item);
             _AppDbContext.Attach(item);
             _AppDbContext.SaveChanges();
-            return RedirectToAction("Cart","Home");
+            return RedirectToAction("Cart", "Home");
         }
-        public IActionResult Edit(int id,string title, int rate,int price, string description, string image)
+        public IActionResult Edit(int id, string title, int rate, int price, string description, string image)
         {
             var data = _AppDbContext.items.Find(id);
             data.title = title;
             data.rate = rate;
             data.price = price;
-            data.desc=description;
+            data.desc = description;
             data.image = image;
             _AppDbContext.SaveChanges();
-            return RedirectToAction("IndexHome","Home");
+            return RedirectToAction("IndexHome", "Home");
         }
         public IActionResult Checkout(int sum)
         {
             var cart = _AppDbContext.carts.Find(1);
-            cart.totalPrice=sum;
+            cart.totalPrice = sum;
             _AppDbContext.Add(cart);
             _AppDbContext.Attach(cart);
             _AppDbContext.SaveChanges();
@@ -166,7 +193,79 @@ namespace Task_Web_Product.Controllers
             var Delete = _AppDbContext.items.Find(id);
             _AppDbContext.items.Remove(Delete);
             _AppDbContext.SaveChanges();
-            return RedirectToAction("IndexAdmin","Home");
+            return RedirectToAction("IndexAdmin", "Home");
+        }
+        public IActionResult SearchSort(string str, string sort1, string sort2)
+        {
+            if (str != null)
+            {
+                var items = from i in _AppDbContext.items where (i.title.Contains(str) || i.desc.Contains(str)) select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                        var x = items.OrderBy(x => x.title);
+                        ViewBag.items = x;
+
+                    }
+                    else
+                    {
+                        var x = items.OrderBy(x => x.price);
+                        ViewBag.items = x;
+
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                        var x = items.OrderByDescending(x => x.title);
+                        ViewBag.items = x;
+
+                    }
+                    else
+                    {
+                        var x = items.OrderByDescending(x => x.price);
+                        ViewBag.items = x;
+
+                    }
+                }
+            }
+            else
+            {
+                var items = from i in _AppDbContext.items select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                        var x = items.OrderBy(x => x.title);
+                        ViewBag.items = x;
+
+                    }
+                    else
+                    {
+                        var x = items.OrderBy(x => x.price);
+                        ViewBag.items = x;
+
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                        var x = items.OrderByDescending(x => x.title);
+                        ViewBag.items = x;
+
+                    }
+                    else
+                    {
+                        var x = items.OrderByDescending(x => x.price);
+                        ViewBag.items = x;
+
+                    }
+                }
+            }
+            return View("Item");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

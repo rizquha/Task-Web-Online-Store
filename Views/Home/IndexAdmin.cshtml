@@ -82,6 +82,9 @@ function Delete(btn)
 }
 function Edit(button)
 {
+    var id = button.id;
+    id=id.substring(5,id.length);
+
     var modal = document.getElementById('id01').style.display='block';
     window.onclick = function(event) 
     {

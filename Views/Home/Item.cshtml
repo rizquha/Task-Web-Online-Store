@@ -1,11 +1,25 @@
+@model Task_Web_Product.Models.IndexViewModel;
 @{
     ViewData["Title"]="Our Product";
 }
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <div class="text-center">
     <h1 class="display-4">Welcome To Our Store</h1>
     <p>Start Your Day With Best Outfit</p>
     <ul>
+    <form method="POST">
+        <input id="searchInput" name="str" placeholder="  Searching" style="width: 200px;">
+        <select name = "Sort1" id="Sorting1">
+            <option value = "pilihan1"selected>Ascending</option>
+            <option value = "pilihan2">Descending</option>
+        </select>
+        <select name = "Sort2" id="Sorting2">
+            <option value = "pilihan1"selected>Name</option>
+            <option value = "pilihan2">Price</option>
+        </select>
+        <input type="submit" class="btn btn-primary" id="submit" onclick="javascript:SearchSortButton(this)">
+    </form><br>
         @{
             var items = ViewBag.items;
             foreach(var item in items)
@@ -30,5 +44,57 @@
                 </div>
             }
         }
-    </ul>
+    </ul> 
+    @{
+    var page = ViewBag.PerPage;
+    @if (Model.Pager.EndPage > 1)
+        {
+            <ul class="pagination">
+                <input name="Search" id="PerPage" placeholder=""style="position: relative;left:30px;width:50px;" >
+                <input type="submit" class="btn btn-primary" style="position: relative;left:35px;" onclick="javascript: page_btn(this)">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                        <li>
+                        <a href="~/Home/Item">First</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Item?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                        </li>
+                }
+                @for (var halaman = Model.Pager.StartPage; halaman <= Model.Pager.EndPage; halaman++)
+                {
+                    
+                        <li class="@(halaman == Model.Pager.CurrentPage ? "active" : "")">
+                        <a href="~/Home/Item?page=@halaman">@halaman</a>
+                        </li>
+                }
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                        <li>
+                        <a href="~/Home/Item?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Item?page=@(Model.Pager.TotalPages)">Last</a>
+                        </li>
+                }
+            </ul>
+        }
+    }<br><br><br>
 </div>
+<script type="text/javascript">
+function SearchSortButton(btn)
+{
+    var search = document.getElementById("searchInput").value;
+    var sorting1= document.getElementById("Sort1").value;
+    var sorting2=document.getElementById("Sort2").value;
+    location.href='/Home/SearchSort?str='+search+'&sort1='+sorting1+'&sort2='+sorting2;
+}
+function page_btn()
+{
+
+    var page = document.getElementById('PerPage').value;
+    var path = '/Home/Index?PerPage='+page;
+    window.location.href = path;
+}
+</script>

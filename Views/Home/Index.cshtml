@@ -5,6 +5,18 @@
     <h1 class="display-4">Welcome To Our Store</h1>
     <p>Start Your Day With Best Outfit</p>
     <ul>
+    <form method="POST" asp-action="SearchSort" asp-controller="Home">
+        <input name="str" placeholder="  Searching" style="width: 200px;">
+        <select name = "Sort1" id="Sorting1">
+            <option value = "pilihan1"selected>Ascending</option>
+            <option value = "pilihan2">Descending</option>
+        </select>
+        <select name = "Sort2" id="Sorting2">
+            <option value = "pilihan1"selected>Name</option>
+            <option value = "pilihan2">Price</option>
+        </select>
+        <input type="submit" class="btn btn-primary" id="submit">
+    </form><br>
         @{
 
             var items = ViewBag.items;
@@ -24,18 +36,6 @@
                         <h6>Rp. @item.price</h6>
                         <a href="/Home/Detail/@item.id">Details</a><br>
                         <button type="button" class="btn btn-info" onclick="location.href='/Home/Add/@item.id'">Add to Cart</button>
-                        @* @{
-                            var status = ViewBag.status;
-                            <div>
-                                <h6>@status</h6>
-                            </div>
-                        }
-                            <h6>@status</h6>
-                            @if(status=="admin")
-                            {
-                                <button type="button" class="btn btn-info" id="edit">Edit</button>
-                                <button type="button" class="btn btn-info" id="delete">Delete</button>
-                            } *@
                         
                     </div>
                     <br>
