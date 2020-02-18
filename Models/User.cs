@@ -10,7 +10,5 @@ namespace Task_Web_Product.Models
         public string Password {get;set;}
         public string status{get;set;}
 
-        public virtual Carts cart {get;set;}
-
     }
 }

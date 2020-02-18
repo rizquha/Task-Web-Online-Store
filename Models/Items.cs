@@ -13,7 +13,7 @@ namespace Task_Web_Product.Models
         public string image {get;set;}
 
         [ForeignKey("CartsId")]
-        public int CartsId{get;set;}=0;
+        public int? CartsId{get;set;}=null;
         public Carts Carts {get;set;}
     }
 }

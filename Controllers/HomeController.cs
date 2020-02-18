@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using PagedList;
+using Stripe;
 using Task_Web_Product.Models;
 
 namespace Task_Web_Product.Controllers
@@ -14,106 +23,512 @@ namespace Task_Web_Product.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private AppDbContext _AppDbContext;
+        public IConfiguration Configuration;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext appDbContext)
+        public HomeController(ILogger<HomeController> logger, AppDbContext appDbContext, IConfiguration configuration)
         {
             _logger = logger;
             _AppDbContext = appDbContext;
+            Configuration = configuration;
         }
 
         public IActionResult Login(string username, string password)
         {
-            var items = from item in _AppDbContext.users select new { uname1 = item.Username, pass1 = item.Password, status = item.status };
-            foreach (var item in items)
+            IActionResult response = Unauthorized();
+            
+            var user = AuthenticatedUser (username, password);
+            if (user != null) {
+                var token = GenerateJwtToken (user);
+                HttpContext.Session.SetString ("JWTToken", token);
+                var get = HttpContext.Session.GetString ("JWTToken");
+                var cek = from x in _AppDbContext.users select x;
+                foreach (var item in cek) {
+                    if (item.Username == username && item.Password == password) {
+                        return RedirectToAction ("IndexAdmin", "Home");
+                    }
+                }
+                return RedirectToAction ("IndexAdmin", "Home");
+            }
+            return View();
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var secuityKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (Configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials (secuityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new [] {
+                new Claim (JwtRegisteredClaimNames.Sub, Convert.ToString (user.Username)),
+                new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid ().ToString ())
+            };
+
+            var token = new JwtSecurityToken (
+                issuer: Configuration["Jwt:Issuer"],
+                audience : Configuration["Jwt:Audience"],
+                claims,
+                expires : DateTime.Now.AddMinutes (2000),
+                signingCredentials : credentials);
+            var encodedToken = new JwtSecurityTokenHandler ().WriteToken (token);
+            return encodedToken;
+        }
+
+        private User AuthenticatedUser(string username, string password)
+        {
+            User user = null;
+            var get = from i in _AppDbContext.users select i;
+            foreach (var i in get) {
+                if (i.Username == username && i.Password == password) {
+                    user = new User {
+                    Username = username,
+                    Password = password,
+                    };
+                }
+            }
+            return user;
+        }
+
+        [Authorize]
+        public IActionResult IndexAdmin(int? page, int PerPage,string sort1, string sort2, string str="")
+        {
+            var token = HttpContext.Session.GetString ("JWTToken");
+            var jwtSec = new JwtSecurityTokenHandler ();
+            var securityToken = jwtSec.ReadToken (token) as JwtSecurityToken;
+            var sub = securityToken?.Claims.First (Claim => Claim.Type == "sub").Value;
+
+            if(PerPage==0)
             {
-                if (username == item.uname1)
+                PerPage=5;
+            }
+            ViewBag.PerPage = PerPage;
+            ViewBag.Search = str;
+            ViewBag.Sort1 = sort1;
+            ViewBag.Sort2 = sort2;
+            
+
+            if (!String.IsNullOrEmpty(str) || !String.IsNullOrWhiteSpace(str))
+            {
+                var item = from i in _AppDbContext.items where (i.title.Contains(str) || i.desc.Contains(str)) select i;
+                if (sort1 == "pilihan1")
                 {
-                    if (password == item.pass1)
+                    if (sort2 == "pilihan1")
                     {
-                        // ViewBag.status=item.status;
-                        return RedirectToAction("IndexAdmin", "Home");
-                        // if(item.status=="user")
-                        // {
-                        //     return RedirectToAction("Index","Home");
-                        // }
-                        // else
-                        // {
-                        //     return RedirectToAction("IndexAdmin","Home");
-                        // }
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
                     }
                     else
                     {
-                        ViewBag.error = "Invalid Password";
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
                     }
                 }
                 else
                 {
-                    ViewBag.error = "invalid Username";
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
                 }
-
-            }
-            return View();
-        }
-        public IActionResult AddItems(string title, string rate, string price, string description, string image)
-        {
-            Items item = new Items
-            {
-                title = title,
-                rate = Convert.ToInt32(rate),
-                price = Convert.ToInt32(price),
-                desc = description,
-                image = image,
-                total_item_in_cart = 0,
-                CartsId = 1
-            };
-            _AppDbContext.Add(item);
-            _AppDbContext.SaveChanges();
-            return View("AddItems");
-        }
-        public IActionResult IndexAdmin()
-        {
-            var items = from item in _AppDbContext.items select item;
-            ViewBag.items = items;
-            return View("IndexAdmin");
-        }
-
-        public IActionResult Index()
-        {
-            var items = from item in _AppDbContext.items where item.rate >= 8 select item;
-            ViewBag.items = items;
-            return View();
-        }
-
-        public IActionResult Item(int Sort, int? page, int PerPage)
-        {
-            ViewBag.PerPage = PerPage;
-            var items = from x in _AppDbContext.items select x;
-            ViewBag.items = items;
-           if (PerPage != 0)
-            {
-                var item = from l in _AppDbContext.items select l;
-                var pager = new Pager(item.Count(), page, PerPage);
-                var viewModel = new IndexViewModel
-                {
-                    Item = item.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
-                    Pager = pager
-                };
-                return View(viewModel);
             }
             else
             {
-                var item = from l in _AppDbContext.items select l;
-                var pager = new Pager(item.Count(), page);
-                var viewModel = new IndexViewModel
+                var item = from i in _AppDbContext.items select i;
+                if (sort1 == "pilihan1")
                 {
-                    Item = item.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
-                    Pager = pager
-                };
-                return View(viewModel);
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                }
             }
-            // var items = from x in _AppDbContext.items select x;
-            // ViewBag.items = items;
-            // return View();
+        }
+        public IActionResult SaveChanges(int id, string title, int rate, int price, string description, string image)
+        {
+
+            var findId = _AppDbContext.items.Find(id);
+            findId.title = title;
+            findId.rate = rate;
+            findId.price = price;
+            findId.desc = description;
+            findId.image = image;
+            _AppDbContext.Add(findId);
+            _AppDbContext.Attach(findId);
+            _AppDbContext.SaveChanges();
+            return RedirectToAction("IndexAdmin","Home");
+        }
+
+        public IActionResult Index(int? page, int PerPage,string sort1, string sort2, string str="")
+        {
+            if(PerPage==0)
+            {
+                PerPage=5;
+            }
+            ViewBag.PerPage = PerPage;
+            ViewBag.Search = str;
+            ViewBag.Sort1 = sort1;
+            ViewBag.Sort2 = sort2;
+            
+
+            if (!String.IsNullOrEmpty(str) || !String.IsNullOrWhiteSpace(str))
+            {
+                var item = from i in _AppDbContext.items where ((i.title.Contains(str) || i.desc.Contains(str))&& i.rate>7) select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
+                }
+            }
+            else
+            {
+                var item = from i in _AppDbContext.items where i.rate>7 select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                }
+            }
+        }
+        public IActionResult AddItems(string title, string rate, string price, string description, string image)
+        {
+            if (title != null && rate != null && price != null && description != null && image != null)
+            {
+                Items item = new Items
+                {
+                    title = title,
+                    rate = Convert.ToInt32(rate),
+                    price = Convert.ToInt32(price),
+                    desc = description,
+                    image = image,
+                    total_item_in_cart = 0,
+                    CartsId = null
+                };
+                _AppDbContext.Add(item);
+                _AppDbContext.SaveChanges();
+            }
+            return View();
+        }
+
+        public IActionResult Item(int? page, int PerPage,string sort1, string sort2, string str="")
+        {
+            if(PerPage==0)
+            {
+                PerPage=5;
+            }
+            ViewBag.PerPage = PerPage;
+            ViewBag.Search = str;
+            ViewBag.Sort1 = sort1;
+            ViewBag.Sort2 = sort2;
+            
+
+            if (!String.IsNullOrEmpty(str) || !String.IsNullOrWhiteSpace(str))
+            {
+                var item = from i in _AppDbContext.items where (i.title.Contains(str) || i.desc.Contains(str)) select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
+                }
+            }
+            else
+            {
+                var item = from i in _AppDbContext.items select i;
+                if (sort1 == "pilihan1")
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderBy(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderBy(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+
+                    }
+                }
+                else
+                {
+                    if (sort2 == "pilihan1")
+                    {
+                            var x = item.OrderByDescending(x => x.title);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                    else
+                    {
+
+                            var x = item.OrderByDescending(x => x.price);
+                            var pager = new Pager(x.Count(), page, PerPage);
+
+                            var viewModel = new IndexViewModel
+                            {
+                                Item = x.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                                Pager = pager
+                            };
+                            return View(viewModel);
+                    }
+                }
+            }
         }
         public IActionResult Detail(int id)
         {
@@ -179,14 +594,23 @@ namespace Task_Web_Product.Controllers
             _AppDbContext.SaveChanges();
             return RedirectToAction("IndexHome", "Home");
         }
-        public IActionResult Checkout(int sum)
+        public IActionResult FormCheckout(int sum)
         {
+            ViewBag.sum = sum;
             var cart = _AppDbContext.carts.Find(1);
             cart.totalPrice = sum;
             _AppDbContext.Add(cart);
             _AppDbContext.Attach(cart);
             _AppDbContext.SaveChanges();
-            return View("Checkout");
+
+            var item = from items in _AppDbContext.items where items.CartsId == 1 && items.total_item_in_cart > 0 select items;
+            ViewBag.itemOut = item;
+            return View();
+        }
+
+        public IActionResult Checkout()
+        {
+            return View();
         }
         public IActionResult Delete(int id)
         {
@@ -195,77 +619,190 @@ namespace Task_Web_Product.Controllers
             _AppDbContext.SaveChanges();
             return RedirectToAction("IndexAdmin", "Home");
         }
-        public IActionResult SearchSort(string str, string sort1, string sort2)
+        public IActionResult ExportTransactions()
         {
-            if (str != null)
+            var comlumHeadrs = new string[]
             {
-                var items = from i in _AppDbContext.items where (i.title.Contains(str) || i.desc.Contains(str)) select i;
-                if (sort1 == "pilihan1")
+                "Id",
+                "First Name",
+                "Last Name",
+                "Email",
+                "Phone Number",
+                "Shipping Address",
+                "Regency",
+                "Zip",
+                "Province",
+                "Total Price"
+            };
+            var items = (from item in _AppDbContext.purchases
+                         select new object[]
+                         {
+                                       item.id,
+                                       $"{item.firstName}",
+                                       $"{item.lastName}",
+                                       $"{item.email}",
+                                       $"{item.phoneNumber}",
+                                       $"{item.shippingAddress}",
+                                       $"{item.Regency}",
+                                       item.Zip,
+                                       $"{item.Province}",
+                                       item.totalPrice
+                         }).ToList();
+
+            var itemcsv = new StringBuilder();
+            items.ForEach(line =>
                 {
-                    if (sort2 == "pilihan1")
-                    {
-                        var x = items.OrderBy(x => x.title);
-                        ViewBag.items = x;
+                    itemcsv.AppendLine(string.Join(",", line));
+                });
 
-                    }
-                    else
-                    {
-                        var x = items.OrderBy(x => x.price);
-                        ViewBag.items = x;
+            byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", comlumHeadrs)}\r\n{itemcsv.ToString()}");
+            return File(buffer, "text/csv", $"Item.csv");
+        }
 
+        public IActionResult Export()
+        {
+            var comlumHeadrs = new string[]
+            {
+                "Id",
+                "Title",
+                "Rate",
+                "Price",
+                "Description"
+            };
+            var items = (from item in _AppDbContext.items
+                         select new object[]
+                         {
+                                       item.id,
+                                       $"{item.title}",
+                                        item.rate,
+                                       item.price,
+                                       $"{item.desc}",
+                         }).ToList();
+
+            var itemcsv = new StringBuilder();
+            items.ForEach(line =>
+                {
+                    itemcsv.AppendLine(string.Join(",", line));
+                });
+
+            byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", comlumHeadrs)}\r\n{itemcsv.ToString()}");
+            return File(buffer, "text/csv", $"Item.csv");
+        }
+
+        [Authorize]
+        public IActionResult Transactions()
+        {
+            var token = HttpContext.Session.GetString ("JWTToken");
+            var jwtSec = new JwtSecurityTokenHandler ();
+            var securityToken = jwtSec.ReadToken (token) as JwtSecurityToken;
+            var sub = securityToken?.Claims.First (Claim => Claim.Type == "sub").Value;
+
+            var display = from i in _AppDbContext.purchases select i;
+            ViewBag.display = display;
+            return View();
+        }
+        public IActionResult Import([FromForm(Name = "file")] IFormFile file)
+        {
+            string filePath = string.Empty;
+            if (file != null)
+            {
+                try
+                {
+                    string fileExtension = Path.GetExtension(file.FileName);
+                    if (fileExtension != ".csv")
+                    {
+                        ViewBag.Message = "Please select the csv file";
+                        return RedirectToAction("IndexAdmin", "Home");
                     }
+                    using (var reader = new StreamReader(file.OpenReadStream()))
+                    {
+                        string[] header = reader.ReadLine().Split(',');
+                        while (!reader.EndOfStream)
+                        {
+                            string[] rows = reader.ReadLine().Split(',');
+                            Items item = new Items()
+                            {
+                                title = rows[0].ToString(),
+                                rate = Int32.Parse(rows[1].ToString()),
+                                price = Int32.Parse(rows[2].ToString()),
+                                desc = rows[3].ToString(),
+                                image = rows[4].ToString(),
+                                CartsId = null,
+                                total_item_in_cart = 0
+                            };
+                            _AppDbContext.items.Add(item);
+                        }
+                        _AppDbContext.SaveChanges();
+                    }
+                    return RedirectToAction("IndexAdmin", "Home");
                 }
-                else
+                catch (Exception e)
                 {
-                    if (sort2 == "pilihan1")
-                    {
-                        var x = items.OrderByDescending(x => x.title);
-                        ViewBag.items = x;
-
-                    }
-                    else
-                    {
-                        var x = items.OrderByDescending(x => x.price);
-                        ViewBag.items = x;
-
-                    }
+                    ViewBag.Message = e.Message;
                 }
             }
-            else
+            return RedirectToAction("IndexAdmin", "Home");
+        }
+        public IActionResult Charge(string firstName, string lastName, string email, string phoneNumber, string shippingAddress, string Province, string Regency, int Zip)
+        {
+            var price = from a in _AppDbContext.carts where a.id==1 select a.totalPrice;
+            var total =0;
+            foreach(var i in price)
             {
-                var items = from i in _AppDbContext.items select i;
-                if (sort1 == "pilihan1")
+                total = i;
+            }
+            
+            Purchase purchase = new Purchase
+            {
+                firstName = firstName,
+                lastName = lastName,
+                email = email,
+                phoneNumber = phoneNumber,
+                shippingAddress = shippingAddress,
+                Province = Province,
+                Regency = Regency,
+                Zip = Zip,
+                CartsId = 1,
+                totalPrice = total
+            };
+            _AppDbContext.Add(purchase);
+            _AppDbContext.SaveChanges();
+            var y = from i in _AppDbContext.carts where i.id == 1 select i.totalPrice;
+            ViewBag.total = y;
+            return View("Purchase");
+        }
+
+        public IActionResult Purchase(string stripeEmail, string stripeToken)
+        {
+            var customer = new CustomerService();
+            var charges = new ChargeService();
+            var customers = customer.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Source = stripeToken
+            });
+            var x = from i in _AppDbContext.carts select i;
+            foreach (var i in x)
+            {
+                var charge = charges.Create(new ChargeCreateOptions
                 {
-                    if (sort2 == "pilihan1")
-                    {
-                        var x = items.OrderBy(x => x.title);
-                        ViewBag.items = x;
-
-                    }
-                    else
-                    {
-                        var x = items.OrderBy(x => x.price);
-                        ViewBag.items = x;
-
-                    }
-                }
-                else
+                    Amount = i.totalPrice,
+                    Description = "Test Payment",
+                    Currency = "idr",
+                    Customer = customers.Id
+                });
+                if (charge.Status == "succeeded")
                 {
-                    if (sort2 == "pilihan1")
-                    {
-                        var x = items.OrderByDescending(x => x.title);
-                        ViewBag.items = x;
-
-                    }
-                    else
-                    {
-                        var x = items.OrderByDescending(x => x.price);
-                        ViewBag.items = x;
-
-                    }
+                    string BalanceTransactionId = charge.BalanceTransactionId;
+                    return RedirectToAction("Checkout", "Home");
                 }
             }
-            return View("Item");
+            return View();
+        }
+        [Authorize]
+        public IActionResult Logout () {
+            HttpContext.Session.Remove ("JWTToken");
+            return RedirectToAction ("Login","Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

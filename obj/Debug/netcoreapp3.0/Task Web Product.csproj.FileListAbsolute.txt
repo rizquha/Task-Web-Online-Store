@@ -96,3 +96,8 @@ D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.We
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.dll
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.Mvc.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\CSVLibraryAK.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\FormCheckout.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Stripe.net.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Purchase.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Transactions.cshtml.g.cs

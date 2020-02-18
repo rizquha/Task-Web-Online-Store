@@ -25,6 +25,7 @@
       "Task Web Product/1.0.0": {
         "dependencies": {
           "Bogus": "28.4.4",
+          "CSVLibraryAK": "1.0.0",
           "McMaster.Extensions.CommandLineUtils": "2.5.1",
           "Microsoft.AspNet.Mvc": "5.2.7",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.0.0",
@@ -36,6 +37,7 @@
           "Newtonsoft.Json": "12.0.3",
           "PagedList": "1.17.0",
           "PagedList.Mvc": "4.5.0",
+          "Stripe.net": "34.22.0",
           "Microsoft.AspNetCore.Antiforgery": "3.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.0.0.0",
@@ -320,6 +322,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Bogus.dll": {}
+        }
+      },
+      "CSVLibraryAK/1.0.0": {
+        "runtime": {
+          "lib/net471/CSVLibraryAK.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net471/CSVLibraryAK.dll": {}
         }
       },
       "McMaster.Extensions.CommandLineUtils/2.5.1": {
@@ -932,6 +945,21 @@
           }
         }
       },
+      "Stripe.net/34.22.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Stripe.net.dll": {
+            "assemblyVersion": "34.22.0.0",
+            "fileVersion": "34.22.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Stripe.net.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0",
@@ -1037,6 +1065,9 @@
             "assemblyVersion": "4.0.1.0",
             "fileVersion": "4.6.26515.6"
           }
+        },
+        "compile": {
+          "ref/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -3136,6 +3167,13 @@
       "path": "bogus/28.4.4",
       "hashPath": "bogus.28.4.4.nupkg.sha512"
     },
+    "CSVLibraryAK/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f0ZMIJ330bVpolNyy0laBRk0fIL37+preQCSfswpdTs6/X7dVR+MEudYh9+rlevCnvlq8YlclzTkUSQCibIJWw==",
+      "path": "csvlibraryak/1.0.0",
+      "hashPath": "csvlibraryak.1.0.0.nupkg.sha512"
+    },
     "McMaster.Extensions.CommandLineUtils/2.5.1": {
       "type": "package",
       "serviceable": true,
@@ -3471,6 +3509,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "Stripe.net/34.22.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mWMF+wYJz+isPBFoMA/QVfw1CPLP5cC040qM4u/zgTQ1DsqOA5aHCWcEeZeAshLh6FeVtLVgtsm3aAU4LSt6WA==",
+      "path": "stripe.net/34.22.0",
+      "hashPath": "stripe.net.34.22.0.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",

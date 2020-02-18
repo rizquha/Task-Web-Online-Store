@@ -11,9 +11,8 @@ namespace Task_Web_Product.Models
 	}
     public class Pager
     {
-        public Pager(int totalItems, int? page, int pageSize = 1)
+        public Pager(int totalItems, int? page, int pageSize = 5)
         {
-            // calculate total, start and end pages
             var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             var currentPage = page != null ? (int)page : 1;
             var startPage = currentPage - 5;

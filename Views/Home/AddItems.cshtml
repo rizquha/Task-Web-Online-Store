@@ -8,27 +8,26 @@
     <ul>
         @{
         <div class="kotak_login">
-		<h3>Add Item</h3> 
 		<form>
 			<label>Title</label>
-			<input type="text" name="title" value="" class="form_login" placeholder="Title .." id="title1">
+			<input type="text" name="title" value="" class="form_login" placeholder="Title" id="title1">
  
 			<label>Rate</label>
-			<input type="text" name="rate" value="" class="form_login" placeholder="Rate .." id="rate1">
+			<input type="text" name="rate" value="" class="form_login" placeholder="Rate" id="rate1">
 
 			<label>Price</label>
-			<input type="text" name="price" value="" class="form_login" placeholder="Price .." id="price1">
+			<input type="text" name="price" value="" class="form_login" placeholder="Price" id="price1">
 
 			<label>Description</label>
-			<input type="text" name="description" value="" class="form_login" placeholder="Description .." id="description1">
+			<input type="text" name="description" value="" class="form_login" placeholder="Description" id="description1">
 
 			<label>Image</label>
-			<input type="text" name="image" value="" class="form_login" placeholder="Image .." id="image1">
+			<input type="text" name="image" value="" class="form_login" placeholder="Image" id="image1">
  
-			<button type="submit" class="tombol_login" value="add" onclick="javascript:AddButtonItem(this)">Add</button>
-            <button class="tombol_login" value="cancel" asp-asp-controller="Home" asp-action="IndexAdmin">Cancel</button>
-			<br>
+			<button type="submit" class="tombol_login" value="add" onclick="javascript:AddButtonItem(this)">Add</button><br><br>
+			
 		</form>
+        <button class="tombol_login" value="cancel" onclick="location.href='/Home/IndexAdmin'">Cancel</button>
 	    </div>
         }
     </ul>
@@ -41,6 +40,7 @@ function AddButtonItem(btn)
     var price = document.getElementById("price1").value;
     var description = document.getElementById("description1").value;
     var image = document.getElementById("image1").value;
-    location.href='/Home/AddItems?title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
+
+    location.href='/Home/AddStore?title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
 }
 </script>

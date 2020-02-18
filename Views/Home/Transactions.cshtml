@@ -1,0 +1,68 @@
+<div class="text-center">
+    <h1 class="display-4">Transactions Page</h1>
+    <p>Always Monitoring Transactions In Your Store</p>
+</div><br>
+<div class="text-right">
+    <button type="button" class="btn btn-info" id="export" onclick="location.href='/Home/ExportTransactions'">Export</button>
+</div>
+<hr class="mb-4">
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <h5><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo</b></h5>
+        </div>
+        <div class="col-2">
+            <h5><b>&nbsp&nbspFirst Name</b></h5>
+        </div>
+        <div class="col-2">
+            <h5><b>&nbsp&nbspLast Name</b></h5>
+        </div>
+        <div class="col-1">
+            <h5><b>Email</b></h5>
+        </div>
+        <div class="col-2.5">
+            <h5><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPhone Number</b></h5>
+        </div>
+        <div class="col-2">
+            <h5 class="text-center"><b>Total</b></h5>
+        </div>
+    </div>
+</div>
+<hr class="mb-4">
+<div class="container">
+    @{
+        var items = ViewBag.display;
+        int counter=0;
+        foreach( var item in items)
+        {
+            <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;">
+            @{
+            counter++;
+            }
+            <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <h5>@counter</h5>
+                </div>
+                <div class="col-2">
+                    <h5>@item.firstName</h5>
+                </div>
+                <div class="col-2">
+                    <h5>@item.lastName</h5>     
+                </div>
+                <div class="col-2">
+                    <h5>@item.email</h5>     
+                </div>
+                <div class="col-2">
+                    <h5>@item.phoneNumber</h5>     
+                </div>
+                <div class="col-2">
+                    <h5>@item.totalPrice</h5>     
+                </div>
+            </div>
+            </div>
+            </li>
+            <hr class="mb-4">
+        }
+    }
+</div>
