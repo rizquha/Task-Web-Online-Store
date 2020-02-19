@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using PagedList;
 using Stripe;
+using MailKit.Net.Smtp;
 using Task_Web_Product.Models;
 
 namespace Task_Web_Product.Controllers
@@ -771,6 +774,33 @@ namespace Task_Web_Product.Controllers
             ViewBag.total = y;
             return View("Purchase");
         }
+        public IActionResult Send(Purchase email)
+        {
+            var message = new MimeMessage();
+            var user = (from i in _AppDbContext.purchases.OrderBy(x=>x.id) select i).LastOrDefault();
+            var nama = user.firstName+" "+user.lastName;
+            var emailAddress = user.email;
+            var amount = user.totalPrice;
+            message.From.Add(new MailboxAddress("Essence","essence@essence.com"));
+            message.To.Add(new MailboxAddress(nama,emailAddress));
+            message.Subject ="Your Purchase";
+            message.Body = new TextPart("Plain")
+            {
+                Text = @"Dear "+nama+","+"\nThank You For Your Purchasing. \n"+"Your Total Amount is : Rp. "+amount
+            };
+
+            using(var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.ServerCertificateValidationCallback = (s,c,h,e) => true;
+				client.Connect ("smtp.mailtrap.io", 587, false);
+				client.Authenticate ("785fd04dea6d9c", "6057ae43ba12a4");
+				client.Send (message);
+				client.Disconnect (true);
+            }
+            return RedirectToAction("Checkout","Home");
+
+            
+        }
 
         public IActionResult Purchase(string stripeEmail, string stripeToken)
         {
@@ -794,7 +824,7 @@ namespace Task_Web_Product.Controllers
                 if (charge.Status == "succeeded")
                 {
                     string BalanceTransactionId = charge.BalanceTransactionId;
-                    return RedirectToAction("Checkout", "Home");
+                    return RedirectToAction("Send", "Home");  
                 }
             }
             return View();

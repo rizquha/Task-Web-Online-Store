@@ -101,3 +101,6 @@ D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\H
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Stripe.net.dll
 D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Purchase.cshtml.g.cs
 D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Transactions.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MailKit.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MimeKit.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\BouncyCastle.Crypto.dll
