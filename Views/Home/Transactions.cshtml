@@ -1,3 +1,6 @@
+@{
+    Layout = "_LayoutAdmin";
+}
 <div class="text-center">
     <h1 class="display-4">Transactions Page</h1>
     <p>Always Monitoring Transactions In Your Store</p>
@@ -9,22 +12,22 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            <h5><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo</b></h5>
+            <h5 class="text-center"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNo</b></h5>
         </div>
         <div class="col-2">
-            <h5><b>&nbsp&nbspFirst Name</b></h5>
+            <h5 class="text-center"><b>Order Date</b></h5>
         </div>
         <div class="col-2">
-            <h5><b>&nbsp&nbspLast Name</b></h5>
-        </div>
-        <div class="col-1">
-            <h5><b>Email</b></h5>
-        </div>
-        <div class="col-2.5">
-            <h5><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPhone Number</b></h5>
+            <h5 class="text-center"><b>Name</b></h5>
         </div>
         <div class="col-2">
-            <h5 class="text-center"><b>Total</b></h5>
+            <h5 class="text-center"><b>Phone Number</b></h5>
+        </div>
+        <div class="col-2">
+            <h5><b>&nbsp&nbsp&nbspItems <Address></Address></b></h5>
+        </div>
+        <div class="col-2">
+            <h5><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTotal Price</b></h5>
         </div>
     </div>
 </div>
@@ -33,36 +36,104 @@
     @{
         var items = ViewBag.display;
         int counter=0;
+        int idPurchase=0;
         foreach( var item in items)
         {
-            <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;">
-            @{
             counter++;
+            @if(counter==1)
+            {
+                idPurchase = @item.idPurchase;
+                <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;">
+                <div class="container">
+                <div class="row">
+                <div class="col-2">
+                    <h5 class="text-center">@counter</h5>
+                </div>
+                <div class="col-2">
+                    <h5 class="text-center">@item.orderDate</h5>
+                </div>
+                <div class="col-2">
+                    <h5 class="text-center">@item.firstName @item.lastName</h5>
+                </div>
+                <div class="col-2">
+                    <h5 class="text-center">@item.phoneNumber</h5>     
+                </div>
+                <div class="col-2">
+                    <h5>@item.namaBarang : @item.totalBarang</h5>     
+                </div>
+                <div class="col-2">
+                    <h5 class="text-center">@item.totalPrice</h5>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <button style="height: 30px;padding-top:4px;" class="text-right" onclick="javascript:Process(this)" id="process" value="@idPurchase">Process</button>     
+                </div>
+                </div>
+                </div>
+                </li>
             }
-            <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <h5>@counter</h5>
-                </div>
-                <div class="col-2">
-                    <h5>@item.firstName</h5>
-                </div>
-                <div class="col-2">
-                    <h5>@item.lastName</h5>     
-                </div>
-                <div class="col-2">
-                    <h5>@item.email</h5>     
-                </div>
-                <div class="col-2">
-                    <h5>@item.phoneNumber</h5>     
-                </div>
-                <div class="col-2">
-                    <h5>@item.totalPrice</h5>     
-                </div>
-            </div>
-            </div>
-            </li>
-            <hr class="mb-4">
+            else
+            {
+                @if(@item.idPurchase==idPurchase)
+                {
+                    counter--;
+                    <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;">
+                    <div class="container">
+                    <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                        <h5>@item.namaBarang : @item.totalBarang</h5>     
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    </div>
+                    </div>
+                    </li>
+                }else{
+                    <hr class="mb-4">
+                    idPurchase = @item.idPurchase;
+                    <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;">
+                    <div class="container">
+                    <div class="row">
+                    <div class="col-2">
+                        <h5 class="text-center">@counter</h5>
+                    </div>
+                    <div class="col-2">
+                        <h5 class="text-center">@item.orderDate</h5>
+                    </div>
+                    <div class="col-2">
+                        <h5 class="text-center">@item.firstName @item.lastName</h5>
+                    </div>
+                    <div class="col-2">
+                        <h5 class="text-center">@item.phoneNumber</h5>     
+                    </div>
+                    <div class="col-2">
+                        <h5>@item.namaBarang : @item.totalBarang</h5>     
+                    </div>
+                    <div class="col-2">
+                        <h5 class="text-center">@item.totalPrice</h5>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <button style="height: 30px;padding-top:4px;" class="text-right">Process</button>     
+
+                    </div>
+                    </div>
+                    </div>
+                    </li>
+                }
+            }
+            
         }
     }
 </div>
+<script type="text/javascript">
+function Process(btn)
+{
+    var id = btn.id;
+    idPurchase = document.getElementById(id).value;
+    console.log("Masuk");
+    location.href='/Home/Process/'+idPurchase;
+}
+<script>

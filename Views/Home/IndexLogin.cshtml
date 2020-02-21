@@ -1,4 +1,7 @@
-﻿    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+  @{
+      Layout="_LayoutLogin";
+  }
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
 
@@ -132,27 +135,27 @@
                 @if (Model.Pager.CurrentPage > 1)
                 {
                         <li>
-                        <a href="~/Home/Index">First</a>
+                        <a href="~/Home/IndexLogin">First</a>
                         </li>
                         <li>
-                            <a href="~/Home/Index?page=@(Model.Pager.CurrentPage - 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Previous</a>
+                            <a href="~/Home/IndexLogin?page=@(Model.Pager.CurrentPage - 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Previous</a>
                         </li>
                 }
                 @for (var halaman = Model.Pager.StartPage; halaman <= Model.Pager.EndPage; halaman++)
                 {
                     
                         <li class="@(halaman == Model.Pager.CurrentPage ? "active" : "")">
-                        <a href="~/Home/Index?page=@halaman&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">@halaman</a>
+                        <a href="~/Home/IndexLogin?page=@halaman&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">@halaman</a>
                         </li>
                 }
 
                 @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
                 {
                         <li>
-                        <a href="~/Home/Index?page=@(Model.Pager.CurrentPage + 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Next</a>
+                        <a href="~/Home/IndexLogin?page=@(Model.Pager.CurrentPage + 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Next</a>
                         </li>
                         <li>
-                            <a href="~/Home/Index?page=@(Model.Pager.TotalPages)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Last</a>
+                            <a href="~/Home/IndexLogin?page=@(Model.Pager.TotalPages)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Last</a>
                         </li>
                 }
             </ul>
@@ -167,7 +170,7 @@ function page_btn()
     var sorting2 = '@ViewBag.Sort2'
 
     var page = document.getElementById('PerPage').value;
-    var path='/Home/Index?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+page;
+    var path='/Home/IndexLogin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+page;
     window.location.href = path;
 }
 function SearchSortButton(btn)
@@ -177,7 +180,7 @@ function SearchSortButton(btn)
     var search = document.getElementById("searchInput").value;
     var sorting1= document.getElementById("Sort1").value;
     var sorting2=document.getElementById("Sort2").value;
-    location.href='/Home/Index?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+pages;
+    location.href='/Home/IndexLogin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+pages;
 }
 </script>
 

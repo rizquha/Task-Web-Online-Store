@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Task_Web_Product.Models
@@ -13,7 +14,12 @@ namespace Task_Web_Product.Models
         public string Province {get;set;}
         public string Regency {get;set;}
         public int Zip {get;set;}
+        public DateTime orderDate {get;set;}
+        public string namaBarang {get;set;}
+        public int totalBarang {get;set;}
         public int totalPrice {get;set;}
+        public string status {get;set;}
+        public int idPurchase {get;set;}
         
 
         [ForeignKey("CartsId")]

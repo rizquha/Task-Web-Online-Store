@@ -14369,6 +14369,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\ItemLogin.cshtml",
+      "TargetPath": "Views\\Home\\ItemLogin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\FormCheckout.cshtml",
       "TargetPath": "Views\\Home\\FormCheckout.cshtml",
       "FileKind": "mvc"
@@ -14381,6 +14386,11 @@
     {
       "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\Cart.cshtml",
       "TargetPath": "Views\\Home\\Cart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Shared\\_LayoutLogin.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutLogin.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14409,6 +14419,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Shared\\_LayoutAdmin.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\Register.cshtml",
+      "TargetPath": "Views\\Home\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\Transactions.cshtml",
       "TargetPath": "Views\\Home\\Transactions.cshtml",
       "FileKind": "mvc"
@@ -14421,6 +14441,11 @@
     {
       "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\bsi50129\\.vscode\\Task Web Product\\Views\\Home\\IndexLogin.cshtml",
+      "TargetPath": "Views\\Home\\IndexLogin.cshtml",
       "FileKind": "mvc"
     }
   ],

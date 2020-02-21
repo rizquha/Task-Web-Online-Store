@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Stripe;
 using Task_Web_Product.Models;
+using Task_Web_Product.SignalR;
 
 namespace Task_Web_Product
 {
@@ -67,6 +68,8 @@ namespace Task_Web_Product
                     ValidateAudience=false,
                 };
             });
+            services.AddSignalR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,10 +99,6 @@ namespace Task_Web_Product
             //Add JWToken to all incoming HTTP Request Header
             app.Use (async (context, next) => {
                 var JWToken = context.Session.GetString ("JWTToken");
-                Console.WriteLine ("==================================");
-                Console.WriteLine (JWToken);
-                Console.WriteLine ("==================================");
-
                 if (!string.IsNullOrEmpty (JWToken)) {
                     context.Request.Headers.Add ("Authorization", "Bearer " + JWToken);
                 }
@@ -114,6 +113,8 @@ namespace Task_Web_Product
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");
+                
             });
         }
     }

@@ -104,3 +104,9 @@ D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\H
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MailKit.dll
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MimeKit.dll
 D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\BouncyCastle.Crypto.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\libman.json
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\ItemLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Register.cshtml.g.cs

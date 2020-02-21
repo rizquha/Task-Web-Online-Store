@@ -1,8 +1,7 @@
+@{
+    Layout = "_LayoutAdmin";
+}
 <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<div class="text-right">
-    <button type="button" style="background-color: white; color:black;" class="btn btn-primary" id="logout" onclick="javascript:logout(this)">Logout</button>
-</div>
 <div class="text-center">
     <h1 class="display-4">Welcome Back Admin</h1>
     <p>Always Update Your Store With Trend Outfits</p>
@@ -168,10 +167,6 @@ function edit(btn)
     var image = document.getElementById("image1").value;
     location.href='/Home/SaveChanges?id='+id+'&title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
 
-}
-function logout(btn)
-{
-    location.href='/Home/Logout';
 }
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
