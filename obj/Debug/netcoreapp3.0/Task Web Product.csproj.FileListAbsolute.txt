@@ -1,0 +1,224 @@
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\appsettings.Development.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\appsettings.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.exe
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.deps.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.runtimeconfig.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.runtimeconfig.dev.json
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.pdb
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.Views.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Task Web Product.Views.pdb
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Bcl.HashCode.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Options.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Collections.Immutable.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.ComponentModel.Annotations.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Diagnostics.DiagnosticSource.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.csprojAssemblyReference.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\staticwebassets\Task Web Product.StaticWebAssets.Manifest.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\staticwebassets\Task Web Product.StaticWebAssets.xml
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.RazorAssemblyInfo.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.RazorAssemblyInfo.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.AssemblyInfoInputs.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.AssemblyInfo.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.TagHelpers.input.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.TagHelpers.output.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.RazorCoreGenerate.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.RazorTargetAssemblyInfo.cache
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.RazorTargetAssemblyInfo.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.Views.pdb
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.csproj.CopyComplete
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Task Web Product.pdb
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Cart.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Item.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Detail.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Checkout.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Login.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Bogus.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\McMaster.Extensions.CommandLineUtils.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexAdmin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\AddItems.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Mvc.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Razor.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.Helpers.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.Deployment.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.Razor.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\System.Web.WebPages.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\PagedList.Mvc.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\CSVLibraryAK.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\FormCheckout.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\Stripe.net.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Purchase.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Transactions.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MailKit.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\MimeKit.dll
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\BouncyCastle.Crypto.dll
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\bin\Debug\netcoreapp3.0\libman.json
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\ItemLogin.cshtml.g.cs
+D:\Users\bsi50129\.vscode\Task Web Product\obj\Debug\netcoreapp3.0\Razor\Views\Home\Register.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\libman.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.exe
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.deps.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.runtimeconfig.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.runtimeconfig.dev.json
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.pdb
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.Views.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Task Web Product.Views.pdb
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Bogus.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\CSVLibraryAK.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\MailKit.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\McMaster.Extensions.CommandLineUtils.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.Mvc.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.Razor.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.Helpers.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.WebPages.Deployment.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.WebPages.Razor.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Web.WebPages.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Bcl.HashCode.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Data.SqlClient.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Options.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Identity.Client.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\MimeKit.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\PagedList.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\PagedList.Mvc.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\BouncyCastle.Crypto.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\Stripe.net.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Collections.Immutable.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.ComponentModel.Annotations.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Runtime.Caching.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\sni.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\sni.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\bin\Debug\netcoreapp3.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.csprojAssemblyReference.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.RazorAssemblyInfo.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.RazorAssemblyInfo.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.AssemblyInfoInputs.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.AssemblyInfo.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.TagHelpers.input.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.TagHelpers.output.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.RazorCoreGenerate.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\AddItems.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Cart.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Checkout.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Detail.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\FormCheckout.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexAdmin.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\IndexLogin.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Item.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\ItemLogin.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Purchase.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Register.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Home\Transactions.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.RazorTargetAssemblyInfo.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.RazorTargetAssemblyInfo.cs
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.Views.pdb
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.csproj.CopyComplete
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\staticwebassets\Task Web Product.StaticWebAssets.Manifest.cache
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\staticwebassets\Task Web Product.StaticWebAssets.xml
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.dll
+C:\Users\Asus A456UQ\Downloads\Task-Web-Online-Store-1.4.3\obj\Debug\netcoreapp3.0\Task Web Product.pdb

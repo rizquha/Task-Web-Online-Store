@@ -1,0 +1,32 @@
+
+<h2>Details Product</h2>
+<p>Check Every Single Your Favorite Product</p>
+<hr class="mb-4">
+
+<div class="text-left">
+    @{
+        var items = ViewBag.items;
+        foreach( var item in items)
+        {
+            <div>
+                <div class="column-image">
+                    <img src=@item.image width="400px" height="400px">
+                </div>
+                <div class="column">
+                    <h2><b>@item.title</b></h2>
+                    <h3><b>Rp. @item.price</b></h3><br>
+                    <h4>@item.desc</h4><br><br><br><br>
+                    <div class="text-center">
+                        <button type="button" style="background-color: goldenrod;width:600px;height:40px;border-color:black;" class="btn btn-info" onclick="location.href='/Home/Add/@item.id'">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="column-rate"><br>
+                    <h4 style="color: goldenrod;"><b>Rate @item.rate</b></h4>
+                </div>
+                
+            </div>
+        }
+    }
+</div>
+<br><br><br> 
+<br><br><br>
