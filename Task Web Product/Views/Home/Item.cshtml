@@ -1,0 +1,107 @@
+@model Task_Web_Product.Models.IndexViewModel;
+@{
+    ViewData["Title"]="Our Product";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Our List Outfits</h1>
+    <p>Start Your Day With Best Outfit And Make Your Day Wonderful</p><br>
+    <ul>
+    <form method="POST">
+        <input id="searchInput" name="str" placeholder="  Searching"style="width: 200px;height:40px" class="input-sorting-searching">
+        <select name = "Sort1" id="Sorting1" style="width: 150px; height:40px;" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Ascending</option>
+            <option value = "pilihan2">Descending</option>
+        </select>
+        <select name = "Sort2" id="Sorting2" style="width: 100px;height:40px" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Name</option>
+            <option value = "pilihan2">Price</option>
+        </select><br><br>
+        <input type="submit" class="btn btn-lg btn-primary" id="submit" onclick="javascript:SearchSortButton(this)">
+    </form><br>
+    
+    <hr class="mb-4">
+        @{
+            var items = Model.Item;
+            foreach(var item in items)
+            {
+                <div class="card">
+                    <br>
+                    <div class="image">
+                        <img src=@item.image width="200px">
+                    </div><br>
+                    <strong class="d-inline-block mb-2 text-primary">Rate : @item.rate</strong><br>
+
+                    <b class="card-text mb-auto">@item.title
+                    </b>
+                    <p>Rp. @item.price</p>
+                    <a href="/Home/Detail/@item.id"><u>Details</u></a><br><br>
+                    <button type="button" class="btn btn-info" onclick="location.href='/Home/Add/@item.id'">Add to Cart</button>
+                    <br>
+                    <br>
+                </div>
+            }
+        }
+    </ul> 
+    @{
+    var pages = ViewBag.PerPage;
+    var search = ViewBag.Search;
+    var sorting1 =ViewBag.Sort1;
+    var sorting2 = ViewBag.Sort2;
+
+    @if (Model.Pager.EndPage > 1)
+        {
+            <ul class="pagination">
+                <input name="Search" id="PerPage" placeholder=""style="position: relative;left:30px;width:50px;">
+                <input type="submit" class="btn btn-primary" style="position: relative;left:35px;" onclick="javascript: page_btn(this)">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                        <li>
+                        <a href="~/Home/Item">First</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Item?page=@(Model.Pager.CurrentPage - 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Previous</a>
+                        </li>
+                }
+                @for (var halaman = Model.Pager.StartPage; halaman <= Model.Pager.EndPage; halaman++)
+                {
+                    
+                        <li class="@(halaman == Model.Pager.CurrentPage ? "active" : "")">
+                        <a href="~/Home/Item?page=@halaman&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">@halaman</a>
+                        </li>
+                }
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                        <li>
+                        <a href="~/Home/Item?page=@(Model.Pager.CurrentPage + 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Next</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Item?page=@(Model.Pager.TotalPages)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Last</a>
+                        </li>
+                }
+            </ul>
+        }
+    }<br><br><br>
+</div>
+<script type="text/javascript">
+function SearchSortButton(btn)
+{
+    var pages = '@ViewBag.PerPage';
+
+    var search = document.getElementById("searchInput").value;
+    var sorting1= document.getElementById("Sort1").value;
+    var sorting2=document.getElementById("Sort2").value;
+    location.href='/Home/Item?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+pages;
+}
+function page_btn()
+{
+    var search = '@ViewBag.Search';
+    var sorting1 ='@ViewBag.Sort1';
+    var sorting2 = '@ViewBag.Sort2'
+
+    var page = document.getElementById('PerPage').value;
+    var path='/Home/Item?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+page;
+    window.location.href = path;
+}
+</script>

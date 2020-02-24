@@ -1,0 +1,191 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="text-center">
+    <h1 class="display-4">Welcome Back Admin</h1>
+    <p>Always Update Your Store With Trend Outfits</p>
+    <form method="POST">
+        <input id="searchInput" name="str" placeholder="  Searching"style="width: 200px;height:40px" class="input-sorting-searching">
+        <select name = "Sort1" id="Sorting1" style="width: 150px; height:40px;" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Ascending</option>
+            <option value = "pilihan2">Descending</option>
+        </select>
+        <select name = "Sort2" id="Sorting2" style="width: 100px;height:40px" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Name</option>
+            <option value = "pilihan2">Price</option>
+        </select><br><br>
+        <input type="submit" class="btn btn-lg btn-primary" id="submit" onclick="javascript:SearchSortButton(this)">
+    </form><br>
+    <hr style="border-width: 2px;" class="mb-4">
+    
+    <div class="text-right">
+    <form class="form-inline my-2 my-md-0" method="post" enctype="multipart/form-data" asp-action="Import" asp-controller="Home">
+        <div>
+            <input class="form-control" name="file" type="file" value="file" required />
+            <button class="btn btn-info" type="submit" onclick="location.href='/Home/Import'">Import</button>
+        </div>
+    </form> 
+    <button type="button" class="btn btn-info" id="add" onclick="location.href='/Home/AddItems'">Add Items</button>
+    <button type="button" class="btn btn-info" id="export" onclick="location.href='/Home/Export'">Export</button>
+    <button class="btn btn-info" type="submit" onclick="location.href='/Home/Transactions'">Transactions</button>
+    </div>
+
+    <ul>
+        @{
+
+            var items = Model.Item;
+            foreach(var item in items)
+            {
+                <div class="card">
+                    <br>
+                    <div class="image">
+                        <img src=@item.image width="200px">
+                    </div><br>
+                    <strong class="d-inline-block mb-2 text-primary">Rate : @item.rate</strong><br>
+
+                    <b class="card-text mb-auto">@item.title
+                    </b>
+                    <p>Rp. @item.price</p>
+                    <a href="/Home/Detail/@item.id"><u>Details</u></a><br><br>
+                    <button type="button" data-title="@item.title" data-image="@item.image" data-rate="@item.rate" data-price="@item.price" data-description="@item.desc" class="btn btn-info" style="background-color: deepskyblue; border-color:grey;" id="edit-@item.id" data-id="@item.id" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                    <button type="button" style="background-color: indianred;border-color:grey" class="btn btn-info" id="delete-@item.id" onclick="javascript:Delete(this)">Delete</button>
+                    <br>
+                    <br>
+                </div>
+            }
+        }
+    </ul>
+    @{
+    var pages = ViewBag.PerPage;
+    var search = ViewBag.Search;
+    var sorting1 =ViewBag.Sort1;
+    var sorting2 = ViewBag.Sort2;
+
+    @if (Model.Pager.EndPage > 1)
+        {
+            <ul class="pagination">
+                <input name="Search" id="PerPage" placeholder=""style="position: relative;left:30px;width:50px;">
+                <input type="submit" class="btn btn-primary" style="position: relative;left:35px;" onclick="javascript: page_btn(this)">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                        <li>
+                        <a href="~/Home/IndexAdmin">First</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/IndexAdmin?page=@(Model.Pager.CurrentPage - 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Previous</a>
+                        </li>
+                }
+                @for (var halaman = Model.Pager.StartPage; halaman <= Model.Pager.EndPage; halaman++)
+                {
+                    
+                        <li class="@(halaman == Model.Pager.CurrentPage ? "active" : "")">
+                        <a href="~/Home/IndexAdmin?page=@halaman&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">@halaman</a>
+                        </li>
+                }
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                        <li>
+                        <a href="~/Home/IndexAdmin?page=@(Model.Pager.CurrentPage + 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Next</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/IndexAdmin?page=@(Model.Pager.TotalPages)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Last</a>
+                        </li>
+                }
+            </ul>
+        }
+    }<br><br><br>
+</div>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width:500px;height:640px">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Update Data</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="id" id="id1" class="form-control" value="" hidden>
+            <input type="text" name="title" id="title1" class="form-control">
+            <br><br>
+            <label for="rate"><b>Rate</b></label><br>
+            <input type="text"  name="rate" id="rate1" class="form-control">
+            <br><br>
+            <label for="price"><b>Price</b></label><br>
+            <input type="text"  name="price" id="price1" class="form-control">
+            <br><br>
+            <label for="description"><b>Description</b></label><br>
+            <input type="text"  name="description" id="description1" class="form-control">
+            <br><br>
+            <label for="image"><b>Image</b></label><br>
+            <input type="text" name="image" id="image1" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;">Close</button>
+            <button type="button" class="btn btn-primary" id="savechanges" onclick="javascript: edit(this)">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script type="text/javascript">
+function Delete(btn)
+{
+    var id = btn.id;
+    id = id.substring(7,id.length);
+    location.href='/Home/Delete?id='+id;
+}
+function SearchSortButton(btn)
+{
+    var pages = '@ViewBag.PerPage';
+
+    var search = document.getElementById("searchInput").value;
+    var sorting1= document.getElementById("Sort1").value;
+    var sorting2=document.getElementById("Sort2").value;
+    location.href='/Home/IndexAdmin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+pages;
+}
+function page_btn()
+{
+    var search = '@ViewBag.Search';
+    var sorting1 ='@ViewBag.Sort1';
+    var sorting2 = '@ViewBag.Sort2'
+
+    var page = document.getElementById('PerPage').value;
+    var path='/Home/IndexAdmin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+page;
+    window.location.href = path;
+}
+function edit(btn)
+{
+    var id = document.getElementById("id1").value;
+    var title = document.getElementById("title1").value;
+    var rate = document.getElementById("rate1").value;
+    var price = document.getElementById("price1").value;
+    var description = document.getElementById("description1").value;
+    var image = document.getElementById("image1").value;
+    location.href='/Home/SaveChanges?id='+id+'&title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
+
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function (e) {
+        $('#id1').val($(e.relatedTarget).data('id'))
+        $('#title1').val($(e.relatedTarget).data('title'))
+        $('#rate1').val($(e.relatedTarget).data('rate'))
+        $('#price1').val($(e.relatedTarget).data('price'))
+        $('#description1').val($(e.relatedTarget).data('description'))
+        $('#image1').val($(e.relatedTarget).data('image'))
+    })
+  </script>
+

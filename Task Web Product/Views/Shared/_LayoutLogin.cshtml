@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essence</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="width: auto;" width="100%">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" alt=""><img src="https://www.essence.com/wp-content/uploads/2019/01/ESSENCE-LOGO.png" width="130px"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1"><br>
+                        <li>
+                            <a style="font-size:17px" class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="IndexLogin">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome&nbsp&nbsp&nbsp</a>
+                        </li>
+                        <li>
+                            <a style="font-size:17px" class="nav-link  text-light" asp-area="" asp-controller="Home" asp-action="ItemLogin">&nbsp&nbsp&nbspProduct&nbsp&nbsp&nbsp</a>
+                        </li>
+                        <li>
+                            <a style="font-size:17px" class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Cart">&nbsp&nbsp&nbspCart&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                        </li>
+                    </ul>
+                </div>
+                    <div class="dropdown" style="float:right;">
+                        <button onclick="myFunction()" class="dropbtn">Notification</button>&nbsp&nbsp&nbsp&nbsp
+                        <div id="myDropdown" class="dropdown-content">
+                            <a>Home</a>
+                            <a>About</a>
+                            <a>Contact</a>
+                        </div>
+                    </div>
+                    <a asp-action="Logout" asp-controller="Home">
+                        <button style="border-color: white; color:white; background-color:#333333" class="btn info pull-right" asp-area="" asp-controller="Home" asp-action="Logout">Logout</button>
+                    </a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div><br><br><br><br>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="#"><img src="https://www.essence.com/wp-content/uploads/2019/01/ESSENCE-LOGO.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 Indonesia</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: essence@gmail.com</li>
+                        </ul>
+                        <div class="footer-social" style="color: aliceblue;">
+                            <a href="#"><img width="50px" height="50px" src="https://image.flaticon.com/icons/svg/1384/1384005.svg"></i></a>
+                            <a href="#"><img src="https://image.flaticon.com/icons/svg/1384/1384015.svg"></a>
+                            <a href="#"><img width="50px" height="50px" src="https://image.flaticon.com/icons/svg/1384/1384017.svg"></i></a>
+                            <a href="#"><img src="https://image.flaticon.com/icons/svg/49/49440.svg"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Serivius</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="payment-pic">
+                            <img src="img/payment-method.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+@* @section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            let connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            connection.start().then(function() {
+                $('#send').on('click',function(event){
+                    event.preventDefault();
+                    let user = $('#user').val();
+                    let message = $('#message').val();
+                    connection.invoke("SendMessage",user,message)
+                    .then(data =>{
+                        console.log("berhasil kirim data")
+                    }).catch(err =>{
+                        return console.error(err.toString());
+                    })
+                });
+                connection.on("GotAMessage",function(user,message){
+                    $('#msg').append('<li>'+user+' : '+message+'</li>');
+                })
+            }).catch(function(err){
+                return console.error(err.toString());
+            })
+        })
+    </script>
+}  *@
+
