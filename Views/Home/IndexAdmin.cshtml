@@ -1,0 +1,377 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="text-center">
+    <h1 class="display-4">Welcome Back Admin</h1>
+    <p>Always Update Your Store With Trend Outfits</p>
+    <form method="POST">
+        <input id="searchInput" name="str" placeholder="  Searching"style="width: 200px;height:40px" class="input-sorting-searching">
+        <select name = "Sort1" id="Sorting1" style="width: 150px; height:40px;" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Ascending</option>
+            <option value = "pilihan2">Descending</option>
+        </select>
+        <select name = "Sort2" id="Sorting2" style="width: 100px;height:40px" class="input-sorting-searching">
+            <option value = "pilihan1"selected>Name</option>
+            <option value = "pilihan2">Price</option>
+        </select><br><br>
+        <input type="submit" class="btn btn-lg btn-primary" id="submit" onclick="javascript:SearchSortButton(this)">
+    </form><br>
+    <hr style="border-width: 2px;" class="mb-4">
+    
+    <div class="text-right">
+    <form class="form-inline my-2 my-md-0" method="post" enctype="multipart/form-data" asp-action="Import" asp-controller="Home">
+        <div>
+            <input class="form-control" name="file" type="file" value="file" required />
+            <button class="btn btn-info" type="submit" onclick="location.href='/Home/Import'">Import</button>
+        </div>
+    </form> 
+    <button type="button" class="btn btn-info" id="add" onclick="location.href='/Home/AddItems'">Add Items</button>
+    <button type="button" class="btn btn-info" id="export" onclick="location.href='/Home/Export'">Export</button>
+    <button class="btn btn-info" type="submit" onclick="location.href='/Home/Transactions'">Transactions</button>
+    </div>
+
+    <ul>
+        @{
+
+            var items = Model.Item;
+            foreach(var item in items)
+            {
+                <div class="card">
+                    <br>
+                    <div class="image">
+                        <img src=@item.image width="200px">
+                    </div><br>
+                    <strong class="d-inline-block mb-2 text-primary">Rate : @item.rate</strong><br>
+
+                    <b class="card-text mb-auto">@item.title
+                    </b>
+                    <p>Rp. @item.price</p>
+                    <a href="/Home/Detail/@item.id"><u>Details</u></a><br><br>
+                    <button type="button" data-title="@item.title" data-image="@item.image" data-rate="@item.rate" data-price="@item.price" data-description="@item.desc" class="btn btn-info" style="background-color: deepskyblue; border-color:grey;" id="edit-@item.id" data-id="@item.id" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                    <button type="button" style="background-color: indianred;border-color:grey" class="btn btn-info" id="delete-@item.id" onclick="javascript:Delete(this)">Delete</button>
+                    <br>
+                    <br>
+                </div>
+            }
+        }
+    </ul>
+    @{
+    var pages = ViewBag.PerPage;
+    var search = ViewBag.Search;
+    var sorting1 =ViewBag.Sort1;
+    var sorting2 = ViewBag.Sort2;
+
+    @if (Model.Pager.EndPage > 1)
+        {
+            <ul class="pagination">
+                <input name="Search" id="PerPage" placeholder=""style="position: relative;left:30px;width:50px;">
+                <input type="submit" class="btn btn-primary" style="position: relative;left:35px;" onclick="javascript: page_btn(this)">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                        <li>
+                        <a href="~/Home/IndexAdmin">First</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/IndexAdmin?page=@(Model.Pager.CurrentPage - 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Previous</a>
+                        </li>
+                }
+                @for (var halaman = Model.Pager.StartPage; halaman <= Model.Pager.EndPage; halaman++)
+                {
+                    
+                        <li class="@(halaman == Model.Pager.CurrentPage ? "active" : "")">
+                        <a href="~/Home/IndexAdmin?page=@halaman&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">@halaman</a>
+                        </li>
+                }
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                        <li>
+                        <a href="~/Home/IndexAdmin?page=@(Model.Pager.CurrentPage + 1)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Next</a>
+                        </li>
+                        <li>
+                            <a href="~/Home/IndexAdmin?page=@(Model.Pager.TotalPages)&PerPage=@pages&str=@search&sort1=@sorting1&sort2=@sorting2">Last</a>
+                        </li>
+                }
+            </ul>
+        }
+    }<br><br><br>
+</div>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="width:500px;height:640px">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Update Data</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <label for="title"><b>Title</b></label><br>
+            <input type="text" name="id" id="id1" class="form-control" value="" hidden>
+            <input type="text" name="title" id="title1" class="form-control">
+            <br><br>
+            <label for="rate"><b>Rate</b></label><br>
+            <input type="text"  name="rate" id="rate1" class="form-control">
+            <br><br>
+            <label for="price"><b>Price</b></label><br>
+            <input type="text"  name="price" id="price1" class="form-control">
+            <br><br>
+            <label for="description"><b>Description</b></label><br>
+            <input type="text"  name="description" id="description1" class="form-control">
+            <br><br>
+            <label for="image"><b>Image</b></label><br>
+            <input type="text" name="image" id="image1" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;color:white;">Close</button>
+            <button type="button" class="btn btn-primary" id="savechanges" onclick="javascript: edit(this)">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<div>
+<button id ="chat" class="open-button" onclick="openForm()">Chat</button>
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Contact</h1>
+    <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-3">
+              <aside class="main visible-md visible-lg">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="panel panel-default users__bar">
+                        <ul id="contacts" class="list-group">
+
+                        @foreach( var user in @ViewBag.user ) {
+                            <a class="user__item contact-@user.id" onclick="openChat(this)" data-contact-id="@user.id" data-contact-name="@user.Username" value="@user.Username" id="@user.id">
+                                <li class="list-group-item d-flex justify-content-between lh-condensed" style="background-color: lightgray;width:250px;">
+                                  <div>
+                                  <img  style="width: 30px;height:30px;" src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png">
+                                  <span style="float: pull-left;">@user.Username</span>
+                                  </div>
+                                </li>
+                                <br>
+                            </a>
+                        }
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+</div>
+
+<div class="chat-popup" id="myChat" style="height: 500px;">
+  <form action="/action_page.php" class="form-container" style="width:400px;height:400px">
+    <h3>Message</h3>
+    <label type="hidden" id="receiver" value=""></label>
+    <div class="container text-center">
+          <div class="row">
+            @{
+              var idcurrentUser = @ViewBag.currentuserid;
+              var nameCurrentUser = @ViewBag.CurrentUser;
+            }
+                          <div class="col-xs-12 col-md-9 chat__body">
+                              <div class="row">
+                                <div class="col-xs-12">
+                                  <div id="msg" class="ex1" style="width: 250px;height:220px;float:pull-left;">
+                                  </div>
+                                </div>
+                                <div class="chat__type__body">
+                                  <div class="chat__type" style="width: 280px;">
+                                    <textarea id="msg_box" placeholder="Type your message"></textarea>
+                                    <button class="btn btn-primary" id="sendMessage" data-currentuser="@nameCurrentUser" data-receiver="">Send</button>
+                                  </div>
+                                </div>
+                                <div class="chat__typing">
+                                  <span id="typerDisplay"></span>
+                                </div>
+                              </div>
+                            </div>
+            </div>
+          </div>
+    <button type="button" class="btn cancel" onclick="closeChat()">Close</button>
+    <br>
+    <br>
+  </form>
+</div>
+</div>
+<script type="text/javascript">
+function Delete(btn)
+{
+    var id = btn.id;
+    id = id.substring(7,id.length);
+    location.href='/Home/Delete?id='+id;
+}
+function SearchSortButton(btn)
+{
+    var pages = '@ViewBag.PerPage';
+
+    var search = document.getElementById("searchInput").value;
+    var sorting1= document.getElementById("Sort1").value;
+    var sorting2=document.getElementById("Sort2").value;
+    location.href='/Home/IndexAdmin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+pages;
+}
+function page_btn()
+{
+    var search = '@ViewBag.Search';
+    var sorting1 ='@ViewBag.Sort1';
+    var sorting2 = '@ViewBag.Sort2'
+
+    var page = document.getElementById('PerPage').value;
+    var path='/Home/IndexAdmin?str='+search+'&sort1='+sorting1+'&sort2='+sorting2+'&PerPage='+page;
+    window.location.href = path;
+}
+function edit(btn)
+{
+    var id = document.getElementById("id1").value;
+    var title = document.getElementById("title1").value;
+    var rate = document.getElementById("rate1").value;
+    var price = document.getElementById("price1").value;
+    var description = document.getElementById("description1").value;
+    var image = document.getElementById("image1").value;
+    location.href='/Home/SaveChanges?id='+id+'&title='+title+'&rate='+rate+'&price='+price+'&description='+description+'&image='+image;
+
+}
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+
+}
+function openChat(btn) {
+  var data = btn.id;
+  var label = document.getElementById("receiver");
+  label.value=data;
+  var to = document.getElementById("receiver").value;
+  var from = '@ViewBag.currentuserid';
+  console.log("FROM");
+  console.log(data);
+  console.log("HALIO");
+  console.log(to);
+  document.getElementById("chat").style.display = "none";
+
+    let url = '/Home/HistoryMessage?to='+to+'&from='+from;
+    $.get(url, function(data, status){
+            let msg = '';
+            $('#msg').append(msg);
+            for(i=0; i<data.length; i++)
+            {
+                if(data[i].identifier == 0)
+                {
+                    console.log("MASUK");
+                    msg = '<div class="text-right">' + data[i].m + '</div>'
+                }
+                else
+                {
+                  console.log("MASUKLAGI");
+                    msg = '<div class="text-left">' + data[i].m + '</div>'
+                }
+                $('#msg').append(msg);
+            }
+
+        }).catch(function(err){
+            console.log(err);
+        });
+  document.getElementById("chat").style.display = "none";
+  document.getElementById("myForm").style.display = "none";
+  document.getElementById("myChat").style.display = "block";
+
+}
+
+function closeForm() {
+  document.getElementById("chat").style.display = "block";
+  document.getElementById("myForm").style.display = "none";
+}
+function closeChat()
+{
+  var list = document.querySelectorAll("#msg .text-left"); 
+    var listright = document.querySelectorAll("#msg .text-right"); 
+
+              for(n=0;n<list.length;n++)
+              {
+                list[n].parentNode.removeChild(list[n])
+              }
+              for(n=0;n<listright.length;n++)
+              {
+                listright[n].parentNode.removeChild(listright[n])
+              }
+  document.getElementById("chat").style.display = "block";
+
+  document.getElementById("myChat").style.display = "none";
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function (e) {
+        $('#id1').val($(e.relatedTarget).data('id'))
+        $('#title1').val($(e.relatedTarget).data('title'))
+        $('#rate1').val($(e.relatedTarget).data('rate'))
+        $('#price1').val($(e.relatedTarget).data('price'))
+        $('#description1').val($(e.relatedTarget).data('description'))
+        $('#image1').val($(e.relatedTarget).data('image'))
+    })
+  </script>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            let connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            connection.start().then(function() {
+              console.log("START");
+                let from = '@ViewBag.currentuserid';
+                connection.invoke("bindConId", from).catch(err=>{
+                    return console.log(err.toString());
+                });
+
+                $('#sendMessage').on('click',function(event){
+                    event.preventDefault();
+                    let to = document.getElementById("receiver").value;
+                    let message = $('#msg_box').val();
+                    console.log("DARI");
+                    console.log(from);
+                    console.log(to);
+                    console.log(message);
+
+                    connection.invoke("SendChatMessage", from.toString(), to.toString(), message).catch(err=>{
+                        return console.error(err.toString());
+                    });
+
+                    $('#msg_box').val("");
+
+                    let msg = '<div class="text-left">' + message + '</div>'
+                    $('#msg').append(msg);
+                });
+            }).catch(function(err) {
+                return console.error(err.toString());
+            });
+            connection.on("GotMessage", function(message){
+              let touser = document.getElementById("receiver").value;
+              if(to == touser.toString())
+              {
+                let msg = '<div class="text-right">' + message + '</div>'
+                $('#msg').append(msg);
+              }
+            });
+
+            $(window).bind('beforeunload', function(){
+                connection.invoke("removeConId", from.toString()).catch(err=>{
+                    return console.log(err.toString());
+                })
+            });
+        })
+    </script>
+} 
